@@ -2,21 +2,22 @@
 	'use strict';
 	angular.module('LunchCheck',[])
 	.controller('LunchCheckController',LunchCheckController);
-	LunchCheckController.$inject = ["scope"];
+	LunchCheckController.$inject = ['$scope'];
 
 	function LunchCheckController($scope){
 		$scope.menu = "";
-		$scope.message = ""
+		$scope.message = "";
 		$scope.check = function(){
-			menu = $scope.menu.split(',');
-			if (!$scope.menu) {
-				$scope.message = '"Please enter data first"'
+			var menu = $scope.menu.split(',');
+			if ($scope.menu.length==0 ){
+				$scope.message = '"Please enter data first"';
+				return;
 			}
 			if (menu.length <= 3) {
-				$scope.message = '"Enjoy!"'
+				$scope.message = '"Enjoy!"';
 			}
-			else (menu.length > 3) {
-				$scope.message = '"Too much!"'
+			else{
+				$scope.message = '"Too much!"';
 			}
 		};
 	}
